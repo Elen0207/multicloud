@@ -7,10 +7,12 @@ terraform {
   }
 }
 
+// projeto da google que deve ser criado, é o id colocado no arquivo variable.tf
 provider "google" {
-    project = var.gcp_project_id
+  project = var.gcp_project_id
 }
 
+// provisionando um cluster de kubernetes
 resource "google_container_cluster" "primary" {
   name               = "kubernetes-cluster-001"
   location           = var.gcp_region
@@ -20,7 +22,7 @@ resource "google_container_cluster" "primary" {
   }
 }
 
-
+// provisionando uma base de dados SQL
 resource "google_sql_database_instance" "instance" {
   name             = "my-database-instancexxxx"
   region           = var.gcp_region
