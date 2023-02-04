@@ -22,7 +22,7 @@ resource "google_container_cluster" "primary" {
   }
 }
 
-// provisionando uma base de dados SQL
+// provisionando uma instancia SQL
 resource "google_sql_database_instance" "instance" {
   name             = "my-database-instancexxxx"
   region           = var.gcp_region
@@ -34,6 +34,7 @@ resource "google_sql_database_instance" "instance" {
   deletion_protection  = "true"
 }
 
+// criando banco de dados
 resource "google_sql_database" "database" {
   name     = "my-database"
   instance = google_sql_database_instance.instance.name
